@@ -1,0 +1,27 @@
+#include "Vector.h"
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+int main()
+{
+	cout << "Razmernost vectora : ";
+	size_t n = 0;
+	cin >> n;
+	cout << "Vector : ";
+	double * vec = new double[n];
+	for (int i = 0; i < n; i++)
+		cin >> vec[i];
+	TVector vector(vec, n);
+	delete[] vec;
+	cout << "Chislo : ";
+	double m = 0;
+	cin >> m;
+	vec = m	* vector;
+	cout << "Vector * Chislo : " << endl;
+	for (int i = 0; i < n; i++)
+		cout << vec[i] << " ";
+	delete[] vec;
+	return 0;
+}

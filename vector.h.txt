@@ -1,0 +1,18 @@
+#include <iostream>
+
+class TVector
+{
+private:
+	double * mas;
+	int n;
+public:
+	TVector();
+	TVector(double*, int);
+	~TVector();
+	TVector& operator=(const TVector& rhs);
+	double operator[](size_t index) const;
+	void print();
+	int getN();
+};
+
+double* operator*(double, TVector&); 

@@ -1,0 +1,66 @@
+#include "Vector.h"
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+	TVector::~TVector()
+	{
+		delete[] mas;
+	}
+
+	TVector::TVector()
+	{
+		n = 0;
+		mas = nullptr;
+	}
+
+	TVector::TVector(double * vec, int m)
+	{
+		n = m;
+		mas = new double[n];
+		memcpy(mas, vec, n * sizeof(double));
+	}
+
+	void TVector::print()
+	{
+		if (n == 0)
+			cout << "empty vector" << endl;
+
+		else
+		{
+			cout << "len = " << n << endl;
+			for (int i = 0; i < n; i++)
+				cout << mas[i] << " ";
+			cout << endl;
+		}
+	}
+
+	TVector & TVector::operator=(const TVector& rhs)
+	{
+		if (mas == rhs.mas)
+			return *this;
+		delete[] mas;
+		n = rhs.n;
+		mas = new double[n];
+		memcpy(mas, rhs.mas, n * sizeof(double));
+		return *this;
+	}
+
+	double TVector::operator[](size_t index)const
+	{
+		return mas[index];
+	}
+
+	int TVector::getN()
+	{
+		return n;
+	}
+
+	double* operator*(double k, TVector& rhs)
+	{
+		double* mas = new double[rhs.getN()];
+		for (int i = 0; i < rhs.getN(); i++)
+			mas[i] = rhs[i] * k;
+		return mas;
+	}
